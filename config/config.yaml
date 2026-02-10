@@ -1,0 +1,11 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  DB_NAME: "US_VISA"
+  COLLECTION_NAME: "visa_data"
+  train_file_name: "train.csv"
+  test_file_name: "test.csv"
+  local_data_file: artifacts/data_ingestion/EasyVisa.csv
+  

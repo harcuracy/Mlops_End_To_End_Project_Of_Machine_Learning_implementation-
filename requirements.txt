@@ -25,6 +25,7 @@ types-pyYAML
 scipy
 Flask
 Flask-Cors
-
+pymongo
+plotly
 
 -e .
