@@ -1,7 +1,9 @@
 import sys
-from us_visa.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+
+
 from us_visa import logger
 from us_visa.exception import USvisaException
+from us_visa.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 
 
 
