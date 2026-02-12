@@ -1,7 +1,8 @@
 from us_visa.constants import *
 from us_visa.utils.common import read_yaml, create_directories
 from us_visa.entity.config_entity import (DataIngestionConfig,
-                                          DataValidationConfig
+                                          DataValidationConfig,
+                                          DataTransformationConfig
                                           )
 
 
@@ -63,3 +64,26 @@ class ConfigurationManager:
             
             )
         return data_validation_config
+    
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config.data_transformation
+        
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir = config.root_dir,
+            train_data = config.train_data,
+            test_data = config.test_data,
+            transformed_train_data = config.transformed_train_data,
+            transformed_test_data = config.transformed_test_data,
+            preprocessor= config.preprocessor,
+            num_features = self.schema.num_features,
+            or_columns = self.schema.or_columns,
+            oh_columns = self.schema.oh_columns,
+            transform_columns = self.schema.transform_columns,
+            drop_columns = self.schema.drop_columns,
+            target_column = self.schema.target_column
+           
+        )
+
+        return data_transformation_config

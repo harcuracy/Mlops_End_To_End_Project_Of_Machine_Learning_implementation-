@@ -1,5 +1,6 @@
 import sys
-from us_visa import logger
+
+
 from us_visa.exception import USvisaException
 from us_visa.config.configuration import ConfigurationManager
 from us_visa.components.data_ingestion import DataIngestion

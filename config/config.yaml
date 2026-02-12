@@ -17,3 +17,12 @@ data_validation:
   test_data: artifacts/data_ingestion/test.csv
   drift_report_path: artifacts/data_validation/drift_report.html
   validation_status_path: artifacts/data_validation/validation_status.yml
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  train_data: artifacts/data_ingestion/train.csv
+  test_data: artifacts/data_ingestion/test.csv
+  transformed_train_data: artifacts/data_transformation/transformed_train_data.npz
+  transformed_test_data: artifacts/data_transformation/transformed_test_data.npz
+  preprocessor: artifacts/data_transformation/preprocessor.joblib
+  

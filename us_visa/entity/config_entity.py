@@ -24,3 +24,19 @@ class DataValidationConfig:
     columns: dict
     numerical_columns: list[str]
     categorical_columns: list[str]
+
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    train_data: str
+    test_data: str
+    transformed_train_data: str
+    transformed_test_data: str
+    num_features: list
+    or_columns: list
+    oh_columns: list
+    transform_columns: list
+    drop_columns: list
+    target_column: str
+    preprocessor: str
