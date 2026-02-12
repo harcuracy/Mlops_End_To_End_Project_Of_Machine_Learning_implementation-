@@ -209,4 +209,5 @@ __marimo__/
 
 #artifacts
 
-artifacts/*
+artifacts/data_ingestion
+artifacts/
