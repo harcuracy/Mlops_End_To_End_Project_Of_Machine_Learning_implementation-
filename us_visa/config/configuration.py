@@ -1,6 +1,8 @@
 from us_visa.constants import *
 from us_visa.utils.common import read_yaml, create_directories
-from us_visa.entity.config_entity import DataIngestionConfig
+from us_visa.entity.config_entity import (DataIngestionConfig,
+                                          DataValidationConfig
+                                          )
 
 
 class ConfigurationManager:
@@ -20,8 +22,11 @@ class ConfigurationManager:
         Note: The config file is in yaml format and is located at CONFIG_FILE_PATH
 
     '''
-    def __init__(self, config_filepath=CONFIG_FILE_PATH):
+    def __init__(self, config_filepath=CONFIG_FILE_PATH,schema_filepath = SCHEMA_FILe_PATH):
+        
         self.config = read_yaml(config_filepath)
+        self.schema = read_yaml(schema_filepath)
+
         create_directories([self.config.artifacts_root])
 
     def get_data_ingestion_config(self) -> DataIngestionConfig:
@@ -39,3 +44,22 @@ class ConfigurationManager:
             CONNECTION_URL= CONNECTION_URL
         )
         return data_ingestion_config
+    
+    def get_data_validation_config(self) -> DataValidationConfig:
+        config = self.config.data_validation
+
+        create_directories([config.root_dir])
+
+        data_validation_config = DataValidationConfig(
+            root_dir=config.root_dir, 
+            train_data= config.train_data,
+            test_data= config.test_data,
+            validation_status_path=config.validation_status_path,
+            drift_report_path=config.drift_report_path,
+            numerical_columns=self.schema.numerical_columns,
+            categorical_columns=self.schema.categorical_columns,
+            columns=self.schema.columns
+
+            
+            )
+        return data_validation_config

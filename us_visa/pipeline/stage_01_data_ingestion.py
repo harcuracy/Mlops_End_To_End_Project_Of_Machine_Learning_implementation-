@@ -5,13 +5,14 @@ from us_visa.config.configuration import ConfigurationManager
 from us_visa.components.data_ingestion import DataIngestion
 
 
-class DataIngestionTrainingPipeline:
+class DataIngestionPipeline:
     def __init__(self):
-        self.config = ConfigurationManager()
+        pass
     
     def main(self):
         try:
-            data_ingestion_config = self.config.get_data_ingestion_config()
+            config = ConfigurationManager()
+            data_ingestion_config = config.get_data_ingestion_config()
             data_ingestion = DataIngestion(config=data_ingestion_config)
             data = data_ingestion.load_data()
             data = data_ingestion.save_data(data=data)
@@ -22,7 +23,7 @@ class DataIngestionTrainingPipeline:
 
 if __name__ == "__main__":
     try:
-        data_ingestion_training_pipeline = DataIngestionTrainingPipeline()
-        data_ingestion_training_pipeline.main()
+        data_ingestion_pipeline = DataIngestionPipeline()
+        data_ingestion_pipeline.main()
     except Exception as e:
         raise USvisaException(e,sys)
